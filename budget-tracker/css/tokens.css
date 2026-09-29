@@ -1,0 +1,23 @@
+/* Design tokens: colors and fonts used across the app. */
+:root {
+  --bg: #090d18;
+  --surface: #101729;
+  --surface-2: #172040;
+  --line: #24304f;
+  --text: #e8eefb;
+  --muted: #93a1c0;
+
+  --mint: #52e0a9;
+  --amber: #ffb454;
+  --coral: #ff6b87;
+  --accent: #7c9cff;
+  --accent-hover: #95b0ff;
+  --on-accent: #081022;
+  --free: #4a5b8a;
+  --input-bg: #0c1222;
+
+  --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  color-scheme: dark;
+}

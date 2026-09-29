@@ -1,0 +1,47 @@
+/* Page structure and responsive behavior. */
+.app { max-width: 1080px; margin: 0 auto; padding: 24px 20px 96px; }
+
+/* Header */
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 14px; margin-bottom: 36px;
+}
+.top h1 { margin: 0; font-size: 1.25rem; font-weight: 800; letter-spacing: -0.01em; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.month { display: flex; align-items: center; gap: 6px; }
+.month-label { min-width: 9.5rem; text-align: center; font-weight: 600; }
+select.cur { width: auto; min-height: 38px; padding: 6px 10px; background: var(--surface); }
+
+/* Two-column grid */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: 48px;
+  align-items: start;
+}
+.col { display: flex; flex-direction: column; gap: 40px; min-width: 0; }
+.section { border-top: 1px solid var(--line); padding-top: 18px; }
+
+/* Footer */
+footer {
+  margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px;
+  color: var(--muted); font-size: 0.875rem;
+}
+footer p { margin: 0; max-width: 60ch; }
+
+/* Tablet and phone: one column, with the add form right after the summary */
+@media (max-width: 860px) {
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .col { display: contents; }
+  .s-hero { order: 1; }
+  .s-add  { order: 2; }
+  .s-cats { order: 3; }
+  .s-list { order: 4; }
+  .top { margin-bottom: 28px; }
+}
+
+@media (max-width: 420px) {
+  .app { padding-left: 16px; padding-right: 16px; }
+  .month-label { min-width: 8rem; }
+}

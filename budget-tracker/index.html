@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A simple, private budget tracker. Track income, spending and category limits by month.">
+  <title>Budget tracker</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <h1>Budget tracker</h1>
+      <div class="controls">
+        <div class="month">
+          <button class="icon-btn" id="prev" type="button" aria-label="Previous month">&lsaquo;</button>
+          <span class="month-label" id="monthLabel" aria-live="polite"></span>
+          <button class="icon-btn" id="next" type="button" aria-label="Next month">&rsaquo;</button>
+          <button class="link-btn" id="thisMonth" type="button" hidden>This month</button>
+        </div>
+        <label>
+          <span class="sr">Currency</span>
+          <select class="cur" id="currency"></select>
+        </label>
+      </div>
+    </header>
+
+    <main class="grid">
+      <div class="col">
+        <section class="s-hero" aria-labelledby="heroLabel">
+          <p class="hero-label" id="heroLabel">Left this month</p>
+          <p class="figure" id="heroFigure">0</p>
+          <div class="stats" id="heroStats"></div>
+          <div class="gauge intro" id="gauge" role="img" aria-label="Money left this month"></div>
+          <p class="pace" id="heroNote"></p>
+        </section>
+
+        <section class="s-cats section" aria-labelledby="catsH">
+          <h2 id="catsH">Spending by category</h2>
+          <ul class="cats" id="cats"></ul>
+        </section>
+      </div>
+
+      <div class="col">
+        <section class="s-add panel" aria-labelledby="addH">
+          <h2 id="addH">Add an entry</h2>
+          <form id="form" novalidate>
+            <fieldset class="type">
+              <legend class="sr">Entry type</legend>
+              <label><input type="radio" name="type" value="expense" checked><span>Expense</span></label>
+              <label><input type="radio" name="type" value="income"><span>Income</span></label>
+            </fieldset>
+
+            <div class="row">
+              <div class="field">
+                <label for="amount">Amount</label>
+                <input id="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-describedby="amountErr">
+                <p class="err" id="amountErr" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="date">Date</label>
+                <input id="date" type="date">
+              </div>
+            </div>
+
+            <div class="field" id="catField">
+              <label for="cat">Category</label>
+              <select id="cat"></select>
+            </div>
+
+            <div class="field">
+              <label for="note">Note <span class="opt">optional</span></label>
+              <input id="note" type="text" maxlength="60" autocomplete="off" placeholder="What was it for?">
+            </div>
+
+            <button class="btn" id="submitBtn" type="submit">Add expense</button>
+          </form>
+        </section>
+
+        <section class="s-list section" aria-labelledby="listH">
+          <div class="list-head">
+            <h2 id="listH">Entries</h2>
+            <label>
+              <span class="sr">Filter entries</span>
+              <select id="filter"></select>
+            </label>
+          </div>
+          <ul class="tx-list" id="txList"></ul>
+          <div id="listEmpty"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>Everything is saved in this browser only and is never sent anywhere. Changing the currency changes the symbol, not the amounts.</p>
+      <button class="link-btn danger" id="erase" type="button">Erase all data</button>
+    </footer>
+  </div>
+
+  <div id="toastWrap" role="status" aria-live="polite" hidden>
+    <div class="toast">
+      <span id="toastMsg"></span>
+      <button class="link-btn" id="toastAction" type="button" hidden></button>
+    </div>
+  </div>
+
+  <!-- Load order matters: each file builds on the ones above it. -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
